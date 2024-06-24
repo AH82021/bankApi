@@ -14,7 +14,7 @@ INT id primary key auto increment;
 @Entity  // 1-  mapped object to table
 public  class BankAccount {
     @Id  // 2- choose the primary key
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // based on the database mysql,postgres,oracledb
     private Long id;
 
     private String accountNumber;
