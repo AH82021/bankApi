@@ -5,10 +5,7 @@ import dev.armancodeblcok.restfulBankApi.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,53 @@ public class BankAccountController {
        List<BankAccount> accountsList = bankService.getAllAccounts();
         return new ResponseEntity<>(accountsList, HttpStatus.OK);
     }
+
+@GetMapping("/accounts/{accountId}")
+    public ResponseEntity<BankAccount> getBankAccountById(@PathVariable Long accountId){
+
+        return new ResponseEntity<>(bankService.getBankAccountById(accountId),HttpStatus.OK);
+
+    }
+
+
+    //
+    @PostMapping("/addAccount")
+    public ResponseEntity<String> addBankAccount(@RequestBody BankAccount account){
+
+
+        return new ResponseEntity<>(bankService.addAccount(account),HttpStatus.CREATED);
+
+    }
+
+@DeleteMapping("/remove/{accountId}")
+    public ResponseEntity<Void> removeAccountById( @PathVariable Long accountId){
+
+        bankService.removeAccountById(accountId);
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/update/{accountId}")
+public ResponseEntity<BankAccount>  updateBankAccount( @PathVariable Long accountId, @RequestBody BankAccount account) {
+
+        bankService.updateBankAccount(accountId,account);
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

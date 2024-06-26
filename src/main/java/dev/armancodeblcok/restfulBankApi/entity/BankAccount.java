@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.io.Serializable;
 /*
 CREATE TABLE IF NOT EXISTS
 BankAccount (
@@ -12,7 +14,7 @@ INT id primary key auto increment;
  */
 
 @Entity  // 1-  mapped object to table
-public  class BankAccount {
+public  class BankAccount implements Serializable {
     @Id  // 2- choose the primary key
     @GeneratedValue(strategy = GenerationType.AUTO) // based on the database mysql,postgres,oracledb
     private Long id;
